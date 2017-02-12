@@ -1,6 +1,7 @@
 # Initialize completion
 autoload -Uz compinit && compinit -i
 zstyle ':completion:*' menu select=4
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zmodload zsh/complist
 # Use vim style navigation keys in menu completion
 bindkey -M menuselect 'h' vi-backward-char

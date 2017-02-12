@@ -1,5 +1,7 @@
+# for mac
+export CLICOLOR=1
 # Use colors in coreutils utilities output
-alias ls='ls --color=auto'
+ls --color=auto &> /dev/null && alias ls='ls --color=auto' ||
 alias grep='grep --color'
 
 # ls aliases

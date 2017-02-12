@@ -2,5 +2,12 @@
 
 # dircolors
 if [[ "$(tput colors)" == "256" ]]; then
-    eval $(dircolors =(cat ~/.shell/plugins/dircolors-solarized/dircolors.256dark ~/.shell/dircolors.extra))
+  if whence dircolors >/dev/null; then
+    eval "$(dircolors -b)"
+    zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+    alias ls='ls --color'
+  else
+    export CLICOLOR=1
+    zstyle ':completion:*:default' list-colors ''
+  fi
 fi
