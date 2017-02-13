@@ -11,7 +11,7 @@
     ~/.axelrc:
     ~/.bash:
     ~/.bashrc:
-    ~/.config/nvim/init.vim: shared_vimrc
+    ~/.config/nvim/init.vim: vimrc_shared
     ~/.dotfiles: ''
     ~/.emacs.d:
     ~/.emacs:
@@ -25,7 +25,7 @@
     ~/.screenrc:
     ~/.shell:
     ~/.tmux.conf:
-    ~/.vimrc: shared_vimrc
+    ~/.vimrc: vimrc_shared
     ~/.zsh:
     ~/.zshrc:
 
@@ -33,4 +33,6 @@
   - mkdir -p ~/.rtorrent/session ~/.rtorrent/watch ~/.rtorrent/downloads
   - curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   - curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  - vim +PlugInstall +qall
+  - nvim +PlugInstall +qall
   - git update-submodules # after linking ~/.gitconfig

@@ -8,8 +8,6 @@ alias gmhacks='cd ~/Documents/Development/web/mhacks/'
 alias gmh='cd ~/Documents/Development/web/michiganhackers/'
 
 alias v='nvim'
-alias vi='nvim'
-alias vim='nvim'
 
 # for mac
 export CLICOLOR=1
