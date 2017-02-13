@@ -25,7 +25,6 @@
     ~/.screenrc:
     ~/.shell:
     ~/.tmux.conf:
-    ~/.vim:
     ~/.vimrc: shared_vimrc
     ~/.zsh:
     ~/.zshrc:
