@@ -1,3 +1,7 @@
+[user]
+	name = Connor Krupp
+	email = kruppcon@umich.edu
+
 [alias]
 	exec = ! "exec"
 	st = status -sb
@@ -101,6 +105,7 @@
 	detachedHead = false
 
 [core]
+	editor = vim
 	excludesfile = ~/.gitignore_global
 
 # Allow local customizations in the .gitconfig_local file

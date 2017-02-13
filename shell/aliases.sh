@@ -1,3 +1,16 @@
+# Personal
+alias caen='ssh kruppcon@login-course.engin.umich.edu'
+
+alias school='cd ~/Documents/School/Winter\ 2017/'
+alias g445='cd ~/Documents/School/Winter\ 2017/EECS\ 445'
+
+alias gmhacks='cd ~/Documents/Development/web/mhacks/'
+alias gmh='cd ~/Documents/Development/web/michiganhackers/'
+
+alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
+
 # for mac
 export CLICOLOR=1
 # Use colors in coreutils utilities output
@@ -21,15 +34,6 @@ dfu() {
     (
         cd ~/.dotfiles && git pull --ff-only && ./install -q
     )
-}
-
-# Use pip without requiring virtualenv
-syspip() {
-    PIP_REQUIRE_VIRTUALENV="" pip "$@"
-}
-
-syspip3() {
-    PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
 }
 
 # cd to git root directory
