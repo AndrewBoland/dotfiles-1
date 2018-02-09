@@ -1,13 +1,17 @@
 # Personal
-alias caen='ssh kruppcon@login-course.engin.umich.edu'
-
-alias school='cd ~/Documents/School/Winter\ 2017/'
-alias g445='cd ~/Documents/School/Winter\ 2017/EECS\ 445'
-
-alias gmhacks='cd ~/Documents/Development/web/mhacks/'
-alias gmh='cd ~/Documents/Development/web/michiganhackers/'
-
 alias v='nvim'
+alias c='clear'
+alias copy="xsel --clipboard"
+alias zeset="source ~/.zshrc"
+alias network='sudo service network-manager restart'
+alias ham='sudo /etc/init.d/logmein-hamachi'
+alias c='clear'
+alias dsa='docker stop $(docker ps -a -q)'
+alias cool='~/Development/Winter2018/eecs483/cool'
+alias 482proj1='docker run -v ~/Development/Winter2018/eecs482/project1:/burrito -it rsippl/centos-dev bash'
+alias 482proj2='docker run -v ~/Development/Winter2018/eecs482/project2:/burrito -it rsippl/centos-dev bash'
+
+# alias emacs="emacs -nw"
 
 # for mac
 export CLICOLOR=1

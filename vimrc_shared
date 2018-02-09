@@ -1,3 +1,9 @@
+"makes yank and paste work with clipboard
+"
+set clipboard=unnamedplus
+
+"lol
+
 " Specify plugin directory
 if has('nvim')
   call plug#begin('~/.local/share/nvim/plugged')
@@ -8,6 +14,10 @@ endif
 " Nerd Tree Lazy Loaded
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -15,14 +25,25 @@ Plug 'vim-airline/vim-airline-themes'
 " Latex
 Plug 'lervag/vimtex'
 
+" JS/JSX
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+
 " Deoplete - dark powered Autocomplete
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'zchee/deoplete-jedi'
+  Plug 'zchee/deoplete-clang'
+  Plug 'arakashic/chromatica.nvim'
+  Plug 'brooth/far.vim'
+  Plug 'jsfaint/gen_tags.vim'
 endif
 
-" Syntastic - Syntax checker
-Plug 'vim-syntastic/syntastic'
+" Auto pair braces and parens
+Plug 'jiangmiao/auto-pairs'
+
+" Neomake - Linter and maker
+Plug 'neomake/neomake'
 
 " fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -30,6 +51,7 @@ Plug 'junegunn/fzf.vim'
 
 " colorschemes
 Plug 'flazz/vim-colorschemes'
+Plug 'mhartington/oceanic-next'
 
 " Initialize plugin system
 call plug#end()
@@ -42,10 +64,13 @@ call plug#end()
 let mapleader="\<SPACE>"
 
 " UI
+if (has("termguicolors"))
+     set termguicolors
+endif
 set showmatch           " Show matching brackets.
 syntax enable
 set background=dark
-silent! colorscheme solarized
+silent! colorscheme OceanicNext
 
 
 " Scrolling Spacing
@@ -63,12 +88,12 @@ set showmode            " Show current mode.
 " Line numbering
 set ruler               " Show the line and column numbers of the cursor.
 set number              " Show the line numbers on the left side.
-set relativenumber      " Show relative line numbers
+"set relativenumber      " Show relative line numbers
 
 " Tab -> space
 set expandtab           " Insert spaces when TAB is pressed.
-set tabstop=2           " Render TABs using this many spaces.
-set shiftwidth=2        " Indentation amount for < and > commands.
+set tabstop=4           " Render TABs using this many spaces.
+set shiftwidth=4        " Indentation amount for < and > commands.
 
 if &listchars ==# 'eol:$'
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
@@ -86,8 +111,8 @@ set gdefault            " Use 'g' flag by default with :s/foo/bar/.
 set magic               " Use 'magic' patterns (extended regular expressions).
 
 " Use <C-L> to clear the highlighting of :set hlsearch.
-if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+if maparg('<C-/>', 'n') ==# ''
+  nnoremap <silent> <C-/> :nohlsearch<CR><C-/>
 endif
 
 " Macros
@@ -133,8 +158,27 @@ nnoremap <Leader>w :Windows<CR>
 " ==================
 
 let g:deoplete#enable_at_startup = 1
+" let g:deoplete#sources#clang#clang_header = '/Users/connorkrupp/Downloads/clang+llvm-5.0.1-x86_64-apple-darwin.tar.xz/clang+llvm-5.0.1-final-x86_64-apple-darwin/lib/clang'
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+let g:deoplete#sources#clang#clang_header = '/usr/bin/clang'
+
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" ==================
+" Miscellaneous Clang Plugins
+" ==================
+"
+let g:deoplete#enable_at_startup = 1
+" let g:deoplete#sources#clang#clang_header = '/Users/connorkrupp/Downloads/clang+llvm-5.0.1-x86_64-apple-darwin.tar.xz/clang+llvm-5.0.1-final-x86_64-apple-darwin/lib/clang'
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+let g:deoplete#sources#clang#clang_header = '/usr/bin/clang'
+
+let g:loaded_gentags#ctags = 1
+let g:loaded_gentags#gtags = 0
+let g:gen_tags#gtags_auto_gen = 1
+
+call neomake#configure#automake('w')
 
 " ==================
 " Airline
@@ -151,7 +195,9 @@ let g:airline_left_sep = ' '
 let g:airline_left_alt_sep = '|'
 let g:airline_right_sep = ' '
 let g:airline_right_alt_sep = '|'
-let g:airline_theme= 'luna'
+if has('nvim')
+    let g:airline_theme= 'oceanicnext'
+end
 
 " ==================
 " Vimtex
@@ -159,3 +205,13 @@ let g:airline_theme= 'luna'
 
 let g:latex_enabled = 1
 let g:vimtex_latexmk_progname = 'nvr'
+
+" ==================
+" JS/JSX
+" ==================
+
+let g:jsx_ext_required = 0
+let g:esversion = 6
+autocmd Filetype javascript setlocal ts=4 sts=4 sts=4 expandtab
+autocmd Filetype html setlocal ts=2 sts=2 sts=2 expandtab
+autocmd Filetype python setlocal ts=4 sts=4 sts=4 expandtab
